@@ -1,0 +1,11 @@
+.title {
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…IgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=) !important;
+	background: -moz-linear-gradient(-65deg, #008fe2 0, #00b29c 100%) !important;
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #008fe2), color-stop(100%, #00b29c)) !important;
+	background: -webkit-linear-gradient(-65deg, #008fe2 0, #00b29c 100%) !important;
+	background: -o-linear-gradient(-65deg, #008fe2 0, #00b29c 100%) !important;
+	background: -ms-linear-gradient(-65deg, #008fe2 0, #00b29c 100%) !important;
+	background: linear-gradient(154deg, #008fe2 0, #00b29c 100%) !important;
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#008fe2', endColorstr='#00b29c', GradientType=1) !important;
+  color: white !important;
+}
