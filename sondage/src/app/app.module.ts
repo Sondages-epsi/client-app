@@ -32,13 +32,7 @@ import { WorkflowComponent } from './workflow/workflow.component';
   declarations: [
     AppComponent,
     QuestionsComponent,
-    HomeComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ChartsModule
-    NavbarComponent,
+    HomeComponent,NavbarComponent,
     AddressComponent,
     DataComponent,
     PersonnalComponent,
@@ -46,7 +40,13 @@ import { WorkflowComponent } from './workflow/workflow.component';
     WorkComponent,
     WorkflowComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ChartsModule,
+    FormsModule
+  ],
+
   providers: [
     { provide: FormDataService, useClass: FormDataService },
     { provide: WorkflowService, useClass: WorkflowService }
