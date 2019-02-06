@@ -1,35 +1,41 @@
-<div class="row">
-    <div class="col s4">
-  <canvas baseChart
-              class="chart"
-              [data]="doughnutChartData"
-              [labels]="doughnutChartLabels"
-              [chartType]="doughnutChartType"
-              [colors]="donutColors"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)">
+<div class="row" (click)="goToNext($event)">
+  <div class="col s4">
+    <canvas
+      baseChart
+      class="chart"
+      [data]="doughnutChartData"
+      [labels]="doughnutChartLabels"
+      [chartType]="doughnutChartType"
+      [colors]="donutColors"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"
+    >
     </canvas>
-    </div>
-    <div class="col s4">
-        <canvas baseChart
-              class="chart"
-              [data]="doughnutChartData"
-              [labels]="doughnutChartLabels"
-              [chartType]="doughnutChartType"
-              [colors]="donutColors"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)">
+  </div>
+  <div class="col s4">
+    <canvas
+      baseChart
+      class="chart"
+      [data]="doughnutChartData"
+      [labels]="doughnutChartLabels"
+      [chartType]="doughnutChartType"
+      [colors]="donutColors"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"
+    >
     </canvas>
-    </div>
-    <div class="col s4">
-        <canvas baseChart
-              class="chart"
-              [data]="doughnutChartData"
-              [labels]="doughnutChartLabels"
-              [chartType]="doughnutChartType"
-              [colors]="donutColors3"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)">
+  </div>
+  <div class="col s4">
+    <canvas
+      baseChart
+      class="chart"
+      [data]="doughnutChartData"
+      [labels]="doughnutChartLabels"
+      [chartType]="doughnutChartType"
+      [colors]="donutColors3"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"
+    >
     </canvas>
-    </div>
+  </div>
 </div>

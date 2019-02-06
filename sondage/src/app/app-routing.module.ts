@@ -5,31 +5,42 @@ import { PersonnalComponent } from './personnal/personnal.component';
 import { WorkComponent } from './work/work.component';
 import { AddressComponent } from './address/address.component';
 import { ResultComponent } from './result/result.component';
+import { HomeComponent } from './home/home.component';
 
 import { WorkflowGuardGuard } from './workflow/workflow-guard.guard';
 import { WorkflowService } from './workflow/workflow.service';
+import { from } from 'rxjs';
 
 export const appRoutes: Routes = [
+  // 7st Route
+  { path: 'graph', component: HomeComponent },
   // 1st Route
   { path: 'personal', component: PersonnalComponent },
   // 2nd Route
-  { path: 'work', component: WorkComponent, canActivate: [WorkflowGuardGuard] },
+  {
+    path: 'work',
+    component: WorkComponent
+    // , canActivate: [WorkflowGuardGuard]
+  },
   // 3rd Route
   {
     path: 'adress',
-    component: AddressComponent,
-    canActivate: [WorkflowGuardGuard]
+    component: AddressComponent
+    // ,
+    // canActivate: [WorkflowGuardGuard
+    // ]
   },
   // 4th Route
   {
     path: 'result',
-    component: ResultComponent,
-    canActivate: [WorkflowGuardGuard]
+    component: ResultComponent
+    // ,
+    // canActivate: [WorkflowGuardGuard]
   },
   // 5th Route
-  { path: '', redirectTo: '/personal', pathMatch: 'full' },
+  { path: '', redirectTo: '/graph', pathMatch: 'full' },
   // 6th Route
-  { path: '**', component: PersonnalComponent }
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({

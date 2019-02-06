@@ -33,7 +33,8 @@ import { EventlistenerComponent } from './eventlistener/eventlistener.component'
   declarations: [
     AppComponent,
     QuestionsComponent,
-    HomeComponent,NavbarComponent,
+    HomeComponent,
+    NavbarComponent,
     AddressComponent,
     DataComponent,
     PersonnalComponent,
@@ -42,12 +43,7 @@ import { EventlistenerComponent } from './eventlistener/eventlistener.component'
     WorkflowComponent,
     EventlistenerComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ChartsModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, ChartsModule, FormsModule],
 
   providers: [
     { provide: FormDataService, useClass: FormDataService },
