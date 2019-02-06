@@ -27,6 +27,7 @@ import { ChartsModule } from 'ng2-charts';
 import { DataComponent } from './data/data.component';
 
 import { WorkflowComponent } from './workflow/workflow.component';
+import { EventlistenerComponent } from './eventlistener/eventlistener.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { WorkflowComponent } from './workflow/workflow.component';
     PersonnalComponent,
     ResultComponent,
     WorkComponent,
-    WorkflowComponent
+    WorkflowComponent,
+    EventlistenerComponent
   ],
   imports: [
     BrowserModule,
