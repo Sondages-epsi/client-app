@@ -68,7 +68,7 @@ export class PersonnalComponent implements OnInit {
   answer1choice() {
     this.formDataService.postAnswers('0', this.personal.lastName).subscribe(
       res => {
-        console.log('le json est ' + JSON.stringify(res));
+        console.log('le 1111111 est ' + JSON.stringify(res));
       },
       (err: HttpErrorResponse) => {
         console.log(err.error);
@@ -78,6 +78,9 @@ export class PersonnalComponent implements OnInit {
       }
     );
     this.personal.lastName = this.answer1;
+    console.log('cest bon');
+
+    this.router.navigate(['/work']);
   }
 
   answer2choice() {
@@ -93,6 +96,7 @@ export class PersonnalComponent implements OnInit {
       }
     );
     this.personal.lastName = this.answer2;
+    this.router.navigate(['/work']);
   }
 
   answer3choice() {
@@ -108,6 +112,7 @@ export class PersonnalComponent implements OnInit {
       }
     );
     this.personal.lastName = this.answer3;
+    this.router.navigate(['/work']);
   }
 
   goToNext(form: any) {

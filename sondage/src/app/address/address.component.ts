@@ -61,6 +61,7 @@ export class AddressComponent implements OnInit {
       }
     );
     this.personal.email = this.answer1;
+    this.router.navigate(['/result']);
   }
 
   answer2choice() {
@@ -76,6 +77,7 @@ export class AddressComponent implements OnInit {
       }
     );
     this.personal.email = this.answer2;
+    this.router.navigate(['/result']);
   }
   answer3choice() {
     this.formDataService.postAnswers('1', this.answer3).subscribe(
@@ -90,6 +92,7 @@ export class AddressComponent implements OnInit {
       }
     );
     this.personal.email = this.answer3;
+    this.router.navigate(['/result']);
   }
 
   save(form: any): boolean {

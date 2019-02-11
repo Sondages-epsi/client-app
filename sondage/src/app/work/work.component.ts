@@ -62,6 +62,7 @@ export class WorkComponent implements OnInit {
       }
     );
     this.workType = this.answer1;
+    this.router.navigate(['/adress']);
   }
 
   answer2choice() {
@@ -77,6 +78,7 @@ export class WorkComponent implements OnInit {
       }
     );
     this.workType = this.answer2;
+    this.router.navigate(['/adress']);
   }
 
   answer3choice() {
@@ -92,6 +94,7 @@ export class WorkComponent implements OnInit {
       }
     );
     this.workType = this.answer3;
+    this.router.navigate(['/adress']);
   }
 
   goToPrevious() {
