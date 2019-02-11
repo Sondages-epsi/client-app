@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { FormData, Personal, Address } from './form-data.model';
+import { Answer } from './answers';
 
 import { WorkflowService } from '../workflow/workflow.service';
 import { STEPS } from '../workflow/workflow.model';
@@ -27,7 +28,9 @@ export class FormDataService {
 
   getAnswers() {
     const myHeader = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
-    return this.http.get('http://localhost:3002/answer', { headers: myHeader });
+    return this.http.get<Array<Answer>>('http://localhost:3002/answer', {
+      headers: myHeader
+    });
   }
 
   postAnswers(question: string, answer: string) {

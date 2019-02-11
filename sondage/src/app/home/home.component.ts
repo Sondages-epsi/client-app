@@ -11,9 +11,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class HomeComponent implements OnInit {
   // Doughnut
   public doughnutChartLabels: string[] = ['0', '1', '+1'];
-  public doughnutChartDataA: number[] = [350, 450, 100];
-  public doughnutChartDataB: number[] = [350, 450, 100];
-  public doughnutChartDataC: number[] = [350, 450, 100];
+
+  public doughnutChartDataA = [];
+  public doughnutChartDataB = [];
+  public doughnutChartDataC = [];
+
   public doughnutChartType = 'doughnut';
   public donutColors = [
     {
@@ -37,11 +39,92 @@ export class HomeComponent implements OnInit {
   ) {}
 
   answers: [];
+  question3: any;
+  question1: any;
+  question2: any;
+
+  q1r1: any;
+  q1r2: any;
+  q1r3: any;
+
+  q2r1: any;
+  q2r2: any;
+  q2r3: any;
+
+  q3r1: any;
+  q3r2: any;
+  q3r3: any;
 
   ngOnInit() {
     this.formDataService.getAnswers().subscribe(
       res => {
-        console.log(JSON.parse(JSON.stringify(res)));
+        console.log(res);
+
+        this.question1 = res.filter(response =>
+          Object.keys(response.answers).includes('2')
+        );
+
+        this.q1r1 = this.question1.filter(
+          d => (d.answers[2] || '').trim() === 'pationnement'
+        ).length;
+
+        this.q1r2 = this.question1.filter(
+          d => (d.answers[2] || '').trim() === 'A la folie'
+        ).length;
+
+        this.q1r3 = this.question1.filter(
+          d => (d.answers[2] || '').trim() === 'Autre'
+        ).length;
+
+        this.doughnutChartDataA.push(this.q1r1);
+        this.doughnutChartDataA.push(this.q1r2);
+        this.doughnutChartDataA.push(this.q1r3);
+
+        // Question 2
+
+        this.question2 = res.filter(response =>
+          Object.keys(response.answers).includes('1')
+        );
+        console.log(this.question2);
+
+        this.q2r1 = this.question2.filter(
+          de => de.answers[1].trim() === 'rouge'
+        ).length;
+
+        this.q2r2 = this.question2.filter(
+          de => de.answers[1].trim() === 'bleu'
+        ).length;
+
+        this.q2r3 = this.question2.filter(
+          de => de.answers[1].trim() === 'autre'
+        ).length;
+
+        this.doughnutChartDataB.push(this.q2r1);
+        this.doughnutChartDataB.push(this.q2r2);
+        this.doughnutChartDataB.push(this.q2r3);
+
+        // Quesion 3
+
+        this.question3 = res.filter(response =>
+          Object.keys(response.answers).includes('0')
+        );
+        console.log(this.question3);
+
+        this.q3r1 = this.question3.filter(
+          de => de.answers[0].trim() === 'A'
+        ).length;
+
+        this.q3r2 = this.question3.filter(
+          de => de.answers[0].trim() === 'B'
+        ).length;
+
+        this.q3r3 = this.question3.filter(
+          de => de.answers[0].trim() === 'C'
+        ).length;
+
+        this.doughnutChartDataC.push(this.q3r1);
+        this.doughnutChartDataC.push(this.q3r2);
+        this.doughnutChartDataC.push(this.q3r3);
       },
       (err: HttpErrorResponse) => {
         console.log(err.error);
