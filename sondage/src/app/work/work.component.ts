@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FormDataService } from '../data/form-data.service';
@@ -49,9 +49,11 @@ export class WorkComponent implements OnInit {
     return true;
   }
 
-  answer1choice() {
+  @HostListener('document:keydown.c') answer1choice() {
     this.formDataService.postAnswers('1', this.answer1).subscribe(
       res => {
+        console.log('choix C dans le work ');
+
         console.log('le json est ' + JSON.stringify(res));
       },
       (err: HttpErrorResponse) => {
@@ -65,9 +67,11 @@ export class WorkComponent implements OnInit {
     this.router.navigate(['/adress']);
   }
 
+  @HostListener('document:keydown.v')
   answer2choice() {
     this.formDataService.postAnswers('1', this.answer2).subscribe(
       res => {
+        console.log('choix V dans le work ');
         console.log('le json est ' + JSON.stringify(res));
       },
       (err: HttpErrorResponse) => {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Personal } from '../data/form-data.model';
@@ -65,27 +65,11 @@ export class PersonnalComponent implements OnInit {
     return true;
   }
 
-  answer1choice() {
-    this.formDataService.postAnswers('0', this.personal.lastName).subscribe(
-      res => {
-        console.log('le 1111111 est ' + JSON.stringify(res));
-      },
-      (err: HttpErrorResponse) => {
-        console.log(err.error);
-        console.log(err.name);
-        console.log(err.message);
-        console.log(err.status);
-      }
-    );
-    this.personal.lastName = this.answer1;
-    console.log('cest bon');
-
-    this.router.navigate(['/work']);
-  }
-
+  @HostListener('document:keydown.c')
   answer2choice() {
     this.formDataService.postAnswers('0', this.personal.lastName).subscribe(
       res => {
+        console.log('jai choisi le C dans le personal');
         console.log('le json est ' + JSON.stringify(res));
       },
       (err: HttpErrorResponse) => {
@@ -99,9 +83,11 @@ export class PersonnalComponent implements OnInit {
     this.router.navigate(['/work']);
   }
 
+  @HostListener('document:keydown.v')
   answer3choice() {
     this.formDataService.postAnswers('0', this.personal.lastName).subscribe(
       res => {
+        console.log('jai choisi le V dans le personal');
         console.log('le json est ' + JSON.stringify(res));
       },
       (err: HttpErrorResponse) => {

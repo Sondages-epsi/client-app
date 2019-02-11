@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Address } from '../data/form-data.model';
@@ -48,9 +48,10 @@ export class AddressComponent implements OnInit {
     console.log('Address feature loaded!');
   }
 
-  answer1choice() {
+  @HostListener('document:keydown.c') answer1choice() {
     this.formDataService.postAnswers('2', this.answer1).subscribe(
       res => {
+        console.log('choix VC dans le adress ');
         console.log('le json est ' + JSON.stringify(res));
       },
       (err: HttpErrorResponse) => {
@@ -64,9 +65,11 @@ export class AddressComponent implements OnInit {
     this.router.navigate(['/result']);
   }
 
-  answer2choice() {
+  @HostListener('document:keydown.v') answer2choice() {
     this.formDataService.postAnswers('2', this.answer2).subscribe(
       res => {
+        console.log('choix V dans le adress ');
+
         console.log('le json est ' + JSON.stringify(res));
       },
       (err: HttpErrorResponse) => {
