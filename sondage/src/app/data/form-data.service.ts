@@ -5,6 +5,9 @@ import { FormData, Personal, Address } from './form-data.model';
 import { WorkflowService } from '../workflow/workflow.service';
 import { STEPS } from '../workflow/workflow.model';
 
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+
 @Injectable()
 export class FormDataService {
   private formData: FormData = new FormData();
@@ -12,7 +15,29 @@ export class FormDataService {
   private isWorkFormValid = false;
   private isAddressFormValid = false;
 
-  constructor(private workflowService: WorkflowService) {}
+  constructor(
+    private workflowService: WorkflowService,
+    private http: HttpClient
+  ) {}
+
+  getQuestions() {
+    const myHeader = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+    return this.http.get('http://localhost:3002/survey', { headers: myHeader });
+  }
+
+  getAnswers() {
+    const myHeader = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+    return this.http.get('http://localhost:3002/answer', { headers: myHeader });
+  }
+
+  postAnswers(question: string, answer: string) {
+    const body = {
+      user: Math.random(),
+      question: question,
+      answer: answer
+    };
+    return this.http.post('http://localhost:3002/answer', body);
+  }
 
   getPersonal(): Personal {
     // Return the Personal data
@@ -86,9 +111,9 @@ export class FormDataService {
   isFormValid() {
     // Return true if all forms had been validated successfully; otherwise, return false
     return (
-      this.isPersonalFormValid &&
-      this.isWorkFormValid &&
-      this.isAddressFormValid
+      this.isPersonalFormValid && this.isWorkFormValid
+      // &&
+      // this.isAddressFormValid
     );
   }
 }

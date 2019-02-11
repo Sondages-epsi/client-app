@@ -29,6 +29,8 @@ import { DataComponent } from './data/data.component';
 import { WorkflowComponent } from './workflow/workflow.component';
 import { EventlistenerComponent } from './eventlistener/eventlistener.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,13 @@ import { EventlistenerComponent } from './eventlistener/eventlistener.component'
     WorkflowComponent,
     EventlistenerComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, ChartsModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ChartsModule,
+    FormsModule,
+    HttpClientModule
+  ],
 
   providers: [
     { provide: FormDataService, useClass: FormDataService },

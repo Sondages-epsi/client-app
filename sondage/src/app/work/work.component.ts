@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FormDataService } from '../data/form-data.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'mt-wizard-work',
@@ -11,7 +12,10 @@ import { FormDataService } from '../data/form-data.service';
 })
 export class WorkComponent implements OnInit {
   title = ' Quel type de sport vous pratiquez ? ';
-  workType: string;
+  answer1: any;
+  answer2: any;
+  answer3: any;
+  workType: any;
   form: any;
   constructor(
     private router: Router,
@@ -19,7 +23,21 @@ export class WorkComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.workType = this.formDataService.getWork();
+    this.workType = this.formDataService.getQuestions().subscribe(
+      res => {
+        const survey = JSON.parse(JSON.stringify(res));
+        this.title = survey.questions['1'].question;
+        this.answer1 = survey.questions['1'].answers['1'];
+        this.answer2 = survey.questions['1'].answers['2'];
+        this.answer3 = survey.questions['1'].answers['3'];
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err.error);
+        console.log(err.name);
+        console.log(err.message);
+        console.log(err.status);
+      }
+    );
     console.log('Work feature loaded');
   }
 
@@ -31,12 +49,49 @@ export class WorkComponent implements OnInit {
     return true;
   }
 
-  individualSport() {
-    this.workType = 'sport individuel';
+  answer1choice() {
+    this.formDataService.postAnswers('1', this.answer1).subscribe(
+      res => {
+        console.log('le json est ' + JSON.stringify(res));
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err.error);
+        console.log(err.name);
+        console.log(err.message);
+        console.log(err.status);
+      }
+    );
+    this.workType = this.answer1;
   }
 
-  teamSport() {
-    this.workType = 'sport collectif';
+  answer2choice() {
+    this.formDataService.postAnswers('1', this.answer2).subscribe(
+      res => {
+        console.log('le json est ' + JSON.stringify(res));
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err.error);
+        console.log(err.name);
+        console.log(err.message);
+        console.log(err.status);
+      }
+    );
+    this.workType = this.answer2;
+  }
+
+  answer3choice() {
+    this.formDataService.postAnswers('1', this.answer3).subscribe(
+      res => {
+        console.log('le json est ' + JSON.stringify(res));
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err.error);
+        console.log(err.name);
+        console.log(err.message);
+        console.log(err.status);
+      }
+    );
+    this.workType = this.answer3;
   }
 
   goToPrevious() {

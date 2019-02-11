@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormDataService } from '../data/form-data.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,9 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   // Doughnut
   public doughnutChartLabels: string[] = ['0', '1', '+1'];
-  public doughnutChartData: number[] = [350, 450, 100];
+  public doughnutChartDataA: number[] = [350, 450, 100];
+  public doughnutChartDataB: number[] = [350, 450, 100];
+  public doughnutChartDataC: number[] = [350, 450, 100];
   public doughnutChartType = 'doughnut';
   public donutColors = [
     {
@@ -27,9 +31,26 @@ export class HomeComponent implements OnInit {
       backgroundColor: ['#e74c3c', '#4BC0C0', '#3498db']
     }
   ];
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private formDataService: FormDataService
+  ) {}
 
-  ngOnInit() {}
+  answers: [];
+
+  ngOnInit() {
+    this.formDataService.getAnswers().subscribe(
+      res => {
+        console.log(JSON.parse(JSON.stringify(res)));
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err.error);
+        console.log(err.name);
+        console.log(err.message);
+        console.log(err.status);
+      }
+    );
+  }
 
   // events
   public chartClicked(e: any): void {

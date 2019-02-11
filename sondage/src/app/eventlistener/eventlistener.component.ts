@@ -7,38 +7,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./eventlistener.component.css']
 })
 export class EventlistenerComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-	/*const button1 = new Gpio(6, 'in', 'both');	  
-	const button2 = new Gpio(13, 'in', 'both');
-	const button3 = new Gpio(19, 'in', 'both');
-	button1.watch((err, value) => {
-		if (err) {
-			throw err;
-		}
-		sendKey(1);
-	});	
-	  
-	button2.watch((err, value) => {
-		if (err) {
-			throw err;
-		}
-		sendKey(2);
-	});	
-	  
-	button3.watch((err, value) => {
-		if (err) {
-			throw err;
-		}
-		sendKey(3);
-	});*/
+    //   const Gpio = onoff.Gpio;
+    //   const button1 = new Gpio(6, 'in', 'both');
+    //   const button2 = new Gpio(13, 'in', 'both');
+    //   const button3 = new Gpio(19, 'in', 'both');
+    //   button1.watch((err, value) => {
+    //     if (err) {
+    //       throw err;
+    //     }
+    //     this.sendKey(1);
+    //   });
+    //   button2.watch((err, value) => {
+    //     if (err) {
+    //       throw err;
+    //     }
+    //     this.sendKey(2);
+    //   });
+    //   button3.watch((err, value) => {
+    //     if (err) {
+    //       throw err;
+    //     }
+    //     this.sendKey(3);
+    //   });
   }
-  /*
-  function sendKey(number){
-	  //Implement action
-	  return number;
-  }*/
 
+  // sendKey(number: any) {
+  //   return number;
+  // }
 }
