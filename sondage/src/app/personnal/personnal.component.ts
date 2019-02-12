@@ -31,28 +31,62 @@ export class PersonnalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const myHeader = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+    
 
     this.personal = this.formDataService.getPersonal();
-    this.http
-      .get('http://localhost:3002/survey', { headers: myHeader })
-      .subscribe(
-        res => {
-          const survey = JSON.parse(JSON.stringify(res));
-          console.log('le json est ' + JSON.stringify(res));
-          this.title = survey.questions['0'].question;
-          this.answer1 = survey.questions['0'].answers['1'];
-          this.answer2 = survey.questions['0'].answers['2'];
-          this.answer3 = survey.questions['0'].answers['3'];
-          console.log('le json est ' + this.title);
-        },
-        (err: HttpErrorResponse) => {
-          console.log(err.error);
-          console.log(err.name);
-          console.log(err.message);
-          console.log(err.status);
-        }
-      );
+
+  this.formDataService.getQuestions().subscribe(
+      res => {
+        const survey = JSON.parse(JSON.stringify(res));
+        this.title = survey.questions['0'].question;
+        this.answer1 = survey.questions['0'].answers['1'];
+        this.answer2 = survey.questions['0'].answers['2'];
+        this.answer3 = survey.questions['0'].answers['3'];
+        console.log('le json est ' + this.title);
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err.error);
+        console.log(err.name);
+        console.log(err.message);
+        console.log(err.status);
+      }
+    );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // this.http
+    //   .get('http://localhost:3002/survey', { headers: myHeader })
+    //   .subscribe(
+    //     res => {
+    //       const survey = JSON.parse(JSON.stringify(res));
+    //       console.log('le json est ' + JSON.stringify(res));
+    //       this.title = survey.questions['0'].question;
+    //       this.answer1 = survey.questions['0'].answers['1'];
+    //       this.answer2 = survey.questions['0'].answers['2'];
+    //       this.answer3 = survey.questions['0'].answers['3'];
+    //       console.log('le json est ' + this.title);
+    //     },
+    //     (err: HttpErrorResponse) => {
+    //       console.log(err.error);
+    //       console.log(err.name);
+    //       console.log(err.message);
+    //       console.log(err.status);
+    //     }
+    //   );
     console.log('Personal feature loaded ');
   }
 
@@ -65,11 +99,30 @@ export class PersonnalComponent implements OnInit {
     return true;
   }
 
+
   @HostListener('document:keydown.c')
-  answer2choice() {
-    this.formDataService.postAnswers('0', this.personal.lastName).subscribe(
+  answer1choice() {
+    this.formDataService.postAnswers('0', this.answer1).subscribe(
       res => {
         console.log('jai choisi le C dans le personal');
+        console.log('le json est ' + JSON.stringify(res));
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err.error);
+        console.log(err.name);
+        console.log(err.message);
+        console.log(err.status);
+      }
+    );
+    this.personal.lastName = this.answer1;
+    this.router.navigate(['/work']);
+  }
+
+  @HostListener('document:keydown.v')
+  answer2choice() {
+    this.formDataService.postAnswers('0', this.answer2).subscribe(
+      res => {
+        console.log('jai choisi le V dans le personal');
         console.log('le json est ' + JSON.stringify(res));
       },
       (err: HttpErrorResponse) => {
@@ -83,11 +136,11 @@ export class PersonnalComponent implements OnInit {
     this.router.navigate(['/work']);
   }
 
-  @HostListener('document:keydown.v')
+  @HostListener('document:keydown.b')
   answer3choice() {
-    this.formDataService.postAnswers('0', this.personal.lastName).subscribe(
+    this.formDataService.postAnswers('0', this.answer3).subscribe(
       res => {
-        console.log('jai choisi le V dans le personal');
+        console.log('jai choisi le B dans le personal');
         console.log('le json est ' + JSON.stringify(res));
       },
       (err: HttpErrorResponse) => {
@@ -101,10 +154,5 @@ export class PersonnalComponent implements OnInit {
     this.router.navigate(['/work']);
   }
 
-  goToNext(form: any) {
-    if (this.save(form)) {
-      // Navigate to the work page
-      this.router.navigate(['/work']);
-    }
-  }
+  
 }

@@ -51,8 +51,8 @@ export class AddressComponent implements OnInit {
   @HostListener('document:keydown.c') answer1choice() {
     this.formDataService.postAnswers('2', this.answer1).subscribe(
       res => {
-        console.log('choix VC dans le adress ');
-        console.log('le json est ' + JSON.stringify(res));
+        console.log('choix C dans le adress ');
+        
       },
       (err: HttpErrorResponse) => {
         console.log(err.error);
@@ -65,12 +65,11 @@ export class AddressComponent implements OnInit {
     this.router.navigate(['/result']);
   }
 
+
   @HostListener('document:keydown.v') answer2choice() {
     this.formDataService.postAnswers('2', this.answer2).subscribe(
       res => {
         console.log('choix V dans le adress ');
-
-        console.log('le json est ' + JSON.stringify(res));
       },
       (err: HttpErrorResponse) => {
         console.log(err.error);
@@ -82,10 +81,12 @@ export class AddressComponent implements OnInit {
     this.personal.email = this.answer2;
     this.router.navigate(['/result']);
   }
+
+  @HostListener('document:keydown.b') 
   answer3choice() {
     this.formDataService.postAnswers('1', this.answer3).subscribe(
       res => {
-        console.log('le json est ' + JSON.stringify(res));
+        console.log('choix B dans le adress ');
       },
       (err: HttpErrorResponse) => {
         console.log(err.error);

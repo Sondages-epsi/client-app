@@ -64,16 +64,18 @@ export class HomeComponent implements OnInit {
           Object.keys(response.answers).includes('2')
         );
 
+        console.log('q1',this.question1);
+
         this.q1r1 = this.question1.filter(
-          d => (d.answers[2] || '').trim() === 'pationnement'
+          d => (d.answers[2] || '').trim() === 'Rock'
         ).length;
 
         this.q1r2 = this.question1.filter(
-          d => (d.answers[2] || '').trim() === 'A la folie'
+          d => (d.answers[2] || '').trim() === 'Electro'
         ).length;
 
         this.q1r3 = this.question1.filter(
-          d => (d.answers[2] || '').trim() === 'Autre'
+          d => (d.answers[2] || '').trim() === 'Rap'
         ).length;
 
         this.doughnutChartDataA.push(this.q1r1);
@@ -85,18 +87,18 @@ export class HomeComponent implements OnInit {
         this.question2 = res.filter(response =>
           Object.keys(response.answers).includes('1')
         );
-        console.log(this.question2);
+        
 
         this.q2r1 = this.question2.filter(
-          de => de.answers[1].trim() === 'rouge'
+          de => de.answers[1].trim() === 'Radio'
         ).length;
 
         this.q2r2 = this.question2.filter(
-          de => de.answers[1].trim() === 'bleu'
+          de => de.answers[1].trim() === 'TV'
         ).length;
 
         this.q2r3 = this.question2.filter(
-          de => de.answers[1].trim() === 'autre'
+          de => de.answers[1].trim() === 'Internet'
         ).length;
 
         this.doughnutChartDataB.push(this.q2r1);
@@ -111,15 +113,15 @@ export class HomeComponent implements OnInit {
         console.log(this.question3);
 
         this.q3r1 = this.question3.filter(
-          de => de.answers[0].trim() === 'A'
+          de => de.answers[0].trim() === 'Chez vous'
         ).length;
 
         this.q3r2 = this.question3.filter(
-          de => de.answers[0].trim() === 'B'
+          de => de.answers[0].trim() === 'En voiture '
         ).length;
 
         this.q3r3 = this.question3.filter(
-          de => de.answers[0].trim() === 'C'
+          de => de.answers[0].trim() === 'Au bureau'
         ).length;
 
         this.doughnutChartDataC.push(this.q3r1);
