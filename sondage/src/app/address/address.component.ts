@@ -20,6 +20,7 @@ export class AddressComponent implements OnInit {
   answer3: any;
   form: any;
   personal: Personal;
+  
 
   constructor(
     private router: Router,
@@ -48,10 +49,11 @@ export class AddressComponent implements OnInit {
     console.log('Address feature loaded!');
   }
 
+
   @HostListener('document:keydown.c') answer1choice() {
     this.formDataService.postAnswers('2', this.answer1).subscribe(
       res => {
-        console.log('choix C dans le adress ');
+        console.log('choix C dans le adress this.answer1 ', this.answer1);
         
       },
       (err: HttpErrorResponse) => {
@@ -63,13 +65,15 @@ export class AddressComponent implements OnInit {
     );
     this.personal.email = this.answer1;
     this.router.navigate(['/result']);
+
+     
   }
 
 
   @HostListener('document:keydown.v') answer2choice() {
     this.formDataService.postAnswers('2', this.answer2).subscribe(
       res => {
-        console.log('choix V dans le adress ');
+        console.log('choix C dans le adress this.answer2 ', this.answer2);
       },
       (err: HttpErrorResponse) => {
         console.log(err.error);
@@ -80,13 +84,17 @@ export class AddressComponent implements OnInit {
     );
     this.personal.email = this.answer2;
     this.router.navigate(['/result']);
+
+         
+
   }
 
+  
   @HostListener('document:keydown.b') 
   answer3choice() {
-    this.formDataService.postAnswers('1', this.answer3).subscribe(
+    this.formDataService.postAnswers('2', this.answer3).subscribe(
       res => {
-        console.log('choix B dans le adress ');
+        
       },
       (err: HttpErrorResponse) => {
         console.log(err.error);
@@ -97,28 +105,16 @@ export class AddressComponent implements OnInit {
     );
     this.personal.email = this.answer3;
     this.router.navigate(['/result']);
+
+         
+
   }
 
-  save(form: any): boolean {
-    if (!form.valid) {
-      return false;
-    }
+ 
 
-    this.formDataService.setPersonal(this.personal);
-    return true;
-  }
+  
 
-  goToPrevious(form: any) {
-    if (this.save(form)) {
-      // Navigate to the work page
-      this.router.navigate(['/work']);
-    }
-  }
+ 
 
-  goToNext(form: any) {
-    if (this.save(form)) {
-      // Navigate to the result page
-      this.router.navigate(['/result']);
-    }
-  }
+  
 }

@@ -15,20 +15,49 @@ export class ResultComponent implements OnInit {
   @Input() formData: FormData;
   isFormValid = false;
 
+ 
+
   constructor(
     private formDataService: FormDataService,
     private router: Router
   ) {}
 
+ 
+
   ngOnInit() {
     this.formData = this.formDataService.getFormData();
     this.isFormValid = this.formDataService.isFormValid();
     console.log('Result feature loaded!');
+
+    this.sleep(1500).then(() => {
+  console.log("fhgjklhjkkjlm");
+  this.router.navigate(['/graph']);
+
+})
+
+ 
   }
 
-  submit() {
-    this.formData = this.formDataService.resetFormData();
-    this.isFormValid = false;
-    this.router.navigate(['/graph']);
-  }
+
+   sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+
+
+
+ 
+
+
+ 
+
+
+  
+
+  
+
+
+  
+
+
 }

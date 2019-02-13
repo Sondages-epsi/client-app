@@ -12,6 +12,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class WorkComponent implements OnInit {
   title = ' Quel type de sport vous pratiquez ? ';
+
+  
   answer1: any;
   answer2: any;
   answer3: any;

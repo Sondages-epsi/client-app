@@ -24,6 +24,7 @@ export class FormDataService {
   getQuestions() {
     const myHeader = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
     return this.http.get('http://localhost:3002/survey', { headers: myHeader });
+    
   }
 
   getAnswers() {
@@ -31,6 +32,10 @@ export class FormDataService {
     return this.http.get<Array<Answer>>('http://localhost:3002/answer', {
       headers: myHeader
     });
+
+    
+
+
   }
 
   postAnswers(question: string, answer: string) {
@@ -40,6 +45,7 @@ export class FormDataService {
       answer: answer
     };
     return this.http.post('http://localhost:3002/answer', body);
+    
   }
 
   getPersonal(): Personal {

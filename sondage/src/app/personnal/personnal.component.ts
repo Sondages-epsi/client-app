@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Personal } from '../data/form-data.model';
@@ -23,6 +23,8 @@ export class PersonnalComponent implements OnInit {
   answer2: any;
   answer3: any;
   questio: any;
+
+    
 
   constructor(
     private router: Router,
@@ -53,40 +55,6 @@ export class PersonnalComponent implements OnInit {
     );
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // this.http
-    //   .get('http://localhost:3002/survey', { headers: myHeader })
-    //   .subscribe(
-    //     res => {
-    //       const survey = JSON.parse(JSON.stringify(res));
-    //       console.log('le json est ' + JSON.stringify(res));
-    //       this.title = survey.questions['0'].question;
-    //       this.answer1 = survey.questions['0'].answers['1'];
-    //       this.answer2 = survey.questions['0'].answers['2'];
-    //       this.answer3 = survey.questions['0'].answers['3'];
-    //       console.log('le json est ' + this.title);
-    //     },
-    //     (err: HttpErrorResponse) => {
-    //       console.log(err.error);
-    //       console.log(err.name);
-    //       console.log(err.message);
-    //       console.log(err.status);
-    //     }
-    //   );
     console.log('Personal feature loaded ');
   }
 

@@ -1,10 +1,15 @@
+
+<h4 *ngIf="this.allquestions.length === 0 ">
+  Personne n'a encore  repondu au sondage !!!
+</h4>
+
 <div class="row" (click)="goToNext($event)">
   <div class="col s4">
     <canvas
       baseChart
       class="chart"
       [data]="doughnutChartDataA"
-      [labels]="doughnutChartLabels"
+      [labels]="doughnutChartLabelsQ1"
       [chartType]="doughnutChartType"
       [colors]="donutColors"
       (chartHover)="chartHovered($event)"
@@ -17,7 +22,7 @@
       baseChart
       class="chart"
       [data]="doughnutChartDataB"
-      [labels]="doughnutChartLabels"
+      [labels]="doughnutChartLabelsQ2"
       [chartType]="doughnutChartType"
       [colors]="donutColors"
       (chartHover)="chartHovered($event)"
@@ -30,7 +35,7 @@
       baseChart
       class="chart"
       [data]="doughnutChartDataC"
-      [labels]="doughnutChartLabels"
+      [labels]="doughnutChartLabelsQ3"
       [chartType]="doughnutChartType"
       [colors]="donutColors3"
       (chartHover)="chartHovered($event)"
