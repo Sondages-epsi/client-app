@@ -1,10 +1,10 @@
-
-<h4 *ngIf="this.allquestions.length === 0 ">
-  Personne n'a encore  repondu au sondage !!!
+<h4 *ngIf="this.allquestions.length === 0">
+  Personne n'a encore repondu au sondage !!!
 </h4>
 
 <div class="row" (click)="goToNext($event)">
   <div class="col s4">
+    <p>{{ thequestion1 }}</p>
     <canvas
       baseChart
       class="chart"
@@ -18,6 +18,7 @@
     </canvas>
   </div>
   <div class="col s4">
+    <p>{{ thequestion2 }}</p>
     <canvas
       baseChart
       class="chart"
@@ -31,6 +32,7 @@
     </canvas>
   </div>
   <div class="col s4">
+    <p>{{ thequestion3 }}</p>
     <canvas
       baseChart
       class="chart"

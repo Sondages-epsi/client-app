@@ -9,15 +9,11 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-   
-
   // Doughnut
-   
+
   public doughnutChartLabelsQ1 = [];
   public doughnutChartLabelsQ2 = [];
   public doughnutChartLabelsQ3 = [];
-  
 
   public doughnutChartDataA = [];
   public doughnutChartDataB = [];
@@ -62,71 +58,80 @@ export class HomeComponent implements OnInit {
   q3r2: any;
   q3r3: any;
 
+  thequestion1: any;
+  thequestion2: any;
+  thequestion3: any;
 
-   unique:any;
-   trimunique:any;
-   unique2:any;
-   trimunique2:any;
-   unique3:any;
-   trimunique3:any;
+  unique: any;
+  trimunique: any;
+  unique2: any;
+  trimunique2: any;
+  unique3: any;
+  trimunique3: any;
 
-   selectedQ1:any;
-   selectedQ2:any;
-   selectedQ3:any;
+  selectedQ1: any;
+  selectedQ2: any;
+  selectedQ3: any;
 
-
-   allquestions:any;
+  allquestions: any;
 
   ngOnInit() {
+    this.formDataService.getQuestions().subscribe(
+      res => {
+        const survey = JSON.parse(JSON.stringify(res));
+        this.thequestion1 = survey.questions['0'].question;
+        this.thequestion2 = survey.questions['1'].question;
+        this.thequestion3 = survey.questions['2'].question;
+
+        console.log('thequestion1' + this.thequestion1);
+        console.log('thequestion2 ' + this.thequestion2);
+        console.log('thequestion3 ' + this.thequestion3);
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err.error);
+        console.log(err.name);
+        console.log(err.message);
+        console.log(err.status);
+      }
+    );
+
     this.formDataService.getAnswers().subscribe(
       res => {
-
         this.allquestions = res;
-        
 
         this.question1 = res.filter(response =>
           Object.keys(response.answers).includes('0')
         );
 
-        console.log('q1',this.question1);
+        console.log('q1', this.question1);
 
-        this.selectedQ1 = this.question1.map(x => x.answers[0])
+        this.selectedQ1 = this.question1.map(x => x.answers[0]);
         this.unique = [...new Set(this.selectedQ1)];
         this.trimunique = this.unique.map(d => d.trim());
 
+        console.log('this.unique ', this.unique);
 
-        console.log('this.unique ',this.unique);
+        for (let index = 0; index < this.trimunique.length; index++) {
+          this.q1r1 = this.question1.filter(
+            d => (d.answers[0] || '').trim() === this.trimunique[0]
+          ).length;
 
+          this.q1r2 = this.question1.filter(
+            d => (d.answers[0] || '').trim() === this.trimunique[1]
+          ).length;
 
-for (let index = 0; index <  this.trimunique.length; index++) {
-
-  this.q1r1 = this.question1.filter(
-          d => (d.answers[0] || '').trim() === this.trimunique[0]
-        ).length;
-
-        this.q1r2 = this.question1.filter(
-          d => (d.answers[0] || '').trim() === this.trimunique[1]
-        ).length;
-
-        this.q1r3 = this.question1.filter(
-          d => (d.answers[0] || '').trim() === this.trimunique[2]
-        ).length;
-  
-}
-        
+          this.q1r3 = this.question1.filter(
+            d => (d.answers[0] || '').trim() === this.trimunique[2]
+          ).length;
+        }
 
         this.doughnutChartDataA.push(this.q1r1);
         this.doughnutChartDataA.push(this.q1r2);
         this.doughnutChartDataA.push(this.q1r3);
 
         this.unique.forEach(element => {
-          
           this.doughnutChartLabelsQ1.push(element);
-          
         });
-
-
-
 
         // Question 2
 
@@ -134,48 +139,31 @@ for (let index = 0; index <  this.trimunique.length; index++) {
           Object.keys(response.answers).includes('1')
         );
 
-
-         this.selectedQ2 = this.question2.map(x => x.answers[1])
+        this.selectedQ2 = this.question2.map(x => x.answers[1]);
         this.unique2 = [...new Set(this.selectedQ2)];
         this.trimunique2 = this.unique2.map(d => d.trim());
-        
 
-       
+        for (let index = 0; index < this.trimunique2.length; index++) {
+          this.q2r1 = this.question2.filter(
+            de => de.answers[1].trim() === this.trimunique2[0]
+          ).length;
 
+          this.q2r2 = this.question2.filter(
+            de => de.answers[1].trim() === this.trimunique2[1]
+          ).length;
 
-for (let index = 0; index <  this.trimunique2.length; index++) {
-   this.q2r1 = this.question2.filter(
-          de => de.answers[1].trim() === this.trimunique2[0]
-        ).length;
-
-        this.q2r2 = this.question2.filter(
-          de => de.answers[1].trim() === this.trimunique2[1]
-        ).length;
-
-        this.q2r3 = this.question2.filter(
-          de => de.answers[1].trim() === this.trimunique2[2]
-        ).length;
-  
-}
+          this.q2r3 = this.question2.filter(
+            de => de.answers[1].trim() === this.trimunique2[2]
+          ).length;
+        }
 
         this.doughnutChartDataB.push(this.q2r1);
         this.doughnutChartDataB.push(this.q2r2);
         this.doughnutChartDataB.push(this.q2r3);
 
-         
-        
-
-      
         this.unique2.forEach(element => {
-          
           this.doughnutChartLabelsQ2.push(element);
-          
         });
-
-
-
-
-
 
         // Quesion 3
 
@@ -183,38 +171,31 @@ for (let index = 0; index <  this.trimunique2.length; index++) {
           Object.keys(response.answers).includes('2')
         );
 
-
-          this.selectedQ3 = this.question3.map(x => x.answers[2])
+        this.selectedQ3 = this.question3.map(x => x.answers[2]);
         this.unique3 = [...new Set(this.selectedQ3)];
         this.trimunique3 = this.unique3.map(d => d.trim());
 
+        for (let index = 0; index < this.trimunique3.length; index++) {
+          this.q3r1 = this.question3.filter(
+            de => de.answers[2].trim() === this.trimunique3[0]
+          ).length;
 
-        for (let index = 0; index <  this.trimunique3.length; index++) {
-    this.q3r1 = this.question3.filter(
-          de => de.answers[2].trim() === this.trimunique3[0]
-        ).length;
+          this.q3r2 = this.question3.filter(
+            de => de.answers[2].trim() === this.trimunique3[1]
+          ).length;
 
-        this.q3r2 = this.question3.filter(
-          de => de.answers[2].trim() === this.trimunique3[1]
-        ).length;
+          this.q3r3 = this.question3.filter(
+            de => de.answers[2].trim() === this.trimunique3[2]
+          ).length;
+        }
 
-        this.q3r3 = this.question3.filter(
-          de => de.answers[2].trim() === this.trimunique3[2]
-        ).length;
-  
-}
-        
         this.doughnutChartDataC.push(this.q3r1);
         this.doughnutChartDataC.push(this.q3r2);
         this.doughnutChartDataC.push(this.q3r3);
 
         this.unique3.forEach(element => {
-          
           this.doughnutChartLabelsQ3.push(element);
-          
         });
-
-
       },
       (err: HttpErrorResponse) => {
         console.log(err.error);
@@ -235,7 +216,6 @@ for (let index = 0; index <  this.trimunique2.length; index++) {
   }
 
   goToNext(e: any) {
-    console.log(' click souriss ' + e);
     this.router.navigate(['/personal']);
   }
 }
