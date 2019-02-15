@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormDataService } from '../data/form-data.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -82,10 +82,6 @@ export class HomeComponent implements OnInit {
         this.thequestion1 = survey.questions['0'].question;
         this.thequestion2 = survey.questions['1'].question;
         this.thequestion3 = survey.questions['2'].question;
-
-        console.log('thequestion1' + this.thequestion1);
-        console.log('thequestion2 ' + this.thequestion2);
-        console.log('thequestion3 ' + this.thequestion3);
       },
       (err: HttpErrorResponse) => {
         console.log(err.error);
@@ -216,6 +212,11 @@ export class HomeComponent implements OnInit {
   }
 
   goToNext(e: any) {
+    this.router.navigate(['/personal']);
+  }
+
+  @HostListener('document:keydown')
+  goToSurvey() {
     this.router.navigate(['/personal']);
   }
 }
